@@ -1,0 +1,15 @@
+import "dotenv/config";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import { PrismaClient } from "../generated/prisma/client";
+
+const adapter = new PrismaMariaDb({
+  host: process.env.DATABASE_HOST || "localhost",
+  port: Number(process.env.DATABASE_PORT) || 3306,
+  user: process.env.DATABASE_USER || "user",
+  password: process.env.DATABASE_PASSWORD || "password",
+  database: process.env.DATABASE_NAME || "StackLab",
+  connectionLimit: 5,
+});
+const prisma = new PrismaClient({ adapter });
+
+export { prisma };
