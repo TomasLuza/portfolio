@@ -76,7 +76,7 @@ export const isAuth = ( req: Request, res: Response, next: NextFunction) => {
     })(req, res ,next);
 };
 
-export const isAdmin = ( req: Request, res: Response, next: NextFunction) => {
+export const isAdminOrOwner = ( req: Request, res: Response, next: NextFunction) => {
     passport.authenticate('jwt', { session: false }, (error: any, user: any) => {
         if(error){
             return res.status(500).json({
@@ -91,7 +91,7 @@ export const isAdmin = ( req: Request, res: Response, next: NextFunction) => {
             })
         }
 
-        if(user.role !== "ADMIN"){
+        if(user.role !== "ADMIN" || "OWNER"){
             return res.status(403).json({
                 error: "Forbidden",
                 message: "Neturite prieigos teisių"
