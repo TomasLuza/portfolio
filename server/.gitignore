@@ -1,7 +1,19 @@
-node_modules
-# Keep environment variables out of version control
+# Node
+node_modules/
+package-lock.json
+
+# Env
 .env
+.env.local
+.env.*.local
 
+# Prisma
+# prisma/migrations/
+prisma/generated/
+
+
+# Logs
+*.log
+
+# Build
 dist/
-
-/generated/prisma

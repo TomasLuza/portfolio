@@ -61,13 +61,17 @@ export const login = [
                 })
             }
 
+            console.log(user);
+            
+
             const token = newToken(user)
 
             const { password: _, ...userData } = user
             
 
+
             res.cookie('authToken', token, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict'
             })
