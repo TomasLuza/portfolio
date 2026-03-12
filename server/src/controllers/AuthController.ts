@@ -60,15 +60,12 @@ export const login = [
                     message: "Neteisignas El.paštas arba Slaptažodis"
                 })
             }
-
-            console.log(user);
             
-
             const token = newToken(user)
 
             const { password: _, ...userData } = user
             
-
+    
 
             res.cookie('authToken', token, {
                 httpOnly: false,

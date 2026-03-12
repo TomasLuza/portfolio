@@ -3,14 +3,33 @@ import Landing from './landing/Landing'
 import Blogs from "./landing/pages/blog/Blogs"
 import Login from "./landing/pages/auth/Login"
 import Dashboard from "./dashboard/Dashboard";
-import { useState } from "react";
+import {useState, useEffect} from "react";
 import AuthContext from "./landing/pages/auth/AuthContext";
 
 function App() {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
 
-  
+  useEffect(() => {
+    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+      const [name, value] = cookie.split("=")
+      acc[name] = value
+      return acc
+    }, {})
+
+      const tokenFromCookie = cookies.authToken
+      const userInfoFromCookie = cookies.userInfo
+                
+
+      if(tokenFromCookie && userInfoFromCookie){
+        setTimeout(() => {
+          setToken(tokenFromCookie)
+          setUser(JSON.parse(decodeURIComponent(userInfoFromCookie)));
+        }, 0)
+      }
+
+  }, [])
+
 
     const router = createBrowserRouter([
     {path:"/", element: <Landing />},

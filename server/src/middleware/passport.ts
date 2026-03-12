@@ -47,7 +47,7 @@ export const JWT_SECRET = process.env.JWT_SECRET;
  )
 
  export const newToken = (user: user) => {
-    jwt.sign(
+   return  jwt.sign(
         {
             id: user.id,
             role: user.role
