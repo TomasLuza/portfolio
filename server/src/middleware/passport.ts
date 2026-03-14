@@ -56,28 +56,11 @@ export const JWT_SECRET = process.env.JWT_SECRET;
         { expiresIn: JWT_EXPIRES_IN }
     )
  }
-
-export const isAuth = ( req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate('jwt', { session: false }, (error : any, user: any) => {
-        if(error){
-            return res.status(500).json({
-             error: "Internal Server Error"   
-            })
-        }
-
-        if(!user){
-            return res.status(401).json({
-                error: "Unauthorized",
-                message: "Prašome Prisijungti"
-            });
-        }
-        req.user = user;
-        return next();
-    })(req, res ,next);
-};
-
+ 
+ 
 export const isAdminOrOwner = ( req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate('jwt', { session: false }, (error: any, user: any) => {
+    passport.authenticate("jwt", { session: false }, (error: any, user: any) => {
+        
         if(error){
             return res.status(500).json({
                 error: "Internal Server Error"
@@ -91,7 +74,7 @@ export const isAdminOrOwner = ( req: Request, res: Response, next: NextFunction)
             })
         }
 
-        if(user.role !== "ADMIN" || "OWNER"){
+        if(user.role !== "ADMIN" && user.role !== "OWNER"){
             return res.status(403).json({
                 error: "Forbidden",
                 message: "Neturite prieigos teisių"

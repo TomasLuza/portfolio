@@ -6,7 +6,7 @@ export const index = [
     async (req: Request, res: Response, next: NextFunction ) => {
         try {
             const blogs = await prisma.blog.findMany()
-            res.status(201).json(blogs)
+            return res.status(201).json(blogs)
         } catch (error) {
             next(error)
         }

@@ -4,44 +4,40 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from "react";
+import AuthContext from '../../../landing/pages/auth/AuthContext';
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import Footer from '../../components/Footer';
 
-import bgImage from "../../../css/blurry-gradient-haikei.svg"
-
-function Blogs(){
-    const [blogs, setBlogs] = useState([])
+import bgImage from "../../../css/polygon-scatter-haikei.svg"
 
 
-    const getData = async () => {
-
-        const response = await fetch("/api/blogs", {
+    function AdminBlogs(){
+    const { user, token } = useContext(AuthContext)
+    const [blogs, setBlogs] = useState([])      
+      
+    const getData = async () => { 
+    
+        const response = await fetch("/api/admin/blogs", {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json",
             }
-
         })
 
         const data = await response.json()
-
         setBlogs(data)
-        console.log(data);
-        
     }
     
-    
     useEffect(() => {
-        const load = async () => {
-            await getData()
-        }
-        load()
-    }, [])
+      if(!user && !token) return;
 
+      getData()
+   
+    }, [user, token])
 
     return(
-        <div className='flex flex-col min-h-screen'>
+         <div className='flex flex-col min-h-screen'>
 
         <Navbar />
 
@@ -75,10 +71,9 @@ function Blogs(){
         </div>
 
         </main>
-        <Footer />
 
         </div>
     )
 }
 
-export default Blogs;
+export default AdminBlogs;

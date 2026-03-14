@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.4.2",
     "@prisma/client": "^7.4.2",
+    "@types/cookie-parser": "^1.4.10",
     "@types/passport": "^1.0.17",
     "@types/passport-jwt": "^4.0.1",
     "bcryptjs": "^3.0.3",

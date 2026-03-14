@@ -1,8 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router"
 import Landing from './landing/Landing'
-import Blogs from "./landing/pages/blog/Blogs"
 import Login from "./landing/pages/auth/Login"
+import Logout from "./landing/pages/auth/Logout";
+import Projects from "./landing/pages/projects/Projects";
+import Blogs from "./landing/pages/blog/Blogs"
 import Dashboard from "./dashboard/Dashboard";
+import AdminBlogs from "./dashboard/pages/AdminBlogs/AdminBlogs";
 import {useState, useEffect} from "react";
 import AuthContext from "./landing/pages/auth/AuthContext";
 
@@ -32,17 +35,17 @@ function App() {
 
 
     const router = createBrowserRouter([
+    // LANDING
     {path:"/", element: <Landing />},
+    // AUTH ROUTES
     {path:"/login", element: <Login />},
-    {
-      path: "/blogs",
-      element: <Blogs />,
-      children: [
-        // { path: "project/:id", element: <Project />},
-        // { path:"profile", element: <Profile />},
-      ]
-    },
-    {path: "/dashboard", element: <Dashboard />}
+    {path:"/logout", element: <Logout />},
+    // LANDING ROUTES
+    {path: "/projects", element: <Projects />},
+    {path: "/blogs", element: <Blogs />,},
+    // ADMIN ROUTES
+    {path: "/dashboard", element: <Dashboard />},
+    {path: "/admin/blogs", element: <AdminBlogs />},
   ])
 
 

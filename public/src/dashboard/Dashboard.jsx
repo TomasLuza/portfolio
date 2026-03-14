@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../landing/pages/auth/AuthContext";
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import Navbar from "./components/Navbar";
 
 function Dashboard(){

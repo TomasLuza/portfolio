@@ -14,10 +14,7 @@ import { useState } from 'react';
 
 function Navbar() {
   const pages = [
-    {title: 'Services', link: '/services' },
     {title: 'Projects', link: '/projects'},
-    {title: 'About', link: '/about'},
-    {title: 'Contacts', link: '/contacts'},
     {title: 'Blog', link: '/blogs'},
   ];
   
@@ -32,7 +29,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static"  sx={{ backgroundColor: "#0a0a0a"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -47,11 +44,11 @@ function Navbar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Bracket~Bender
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -105,7 +102,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Bracket~Bender
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
@@ -121,7 +118,7 @@ function Navbar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <NavLink to="/login">
-            <Button variant='outlined' size="medium" sx={{ backgroundColor: "white", borderRadius: "6px", fontSize: "18px", fontWeight: "bold" , px: 4, py: 0.5}}>
+            <Button variant='outlined' size="small" sx={{ backgroundColor: "oklch(90.5% 0.182 98.111)", color: "black", borderRadius: "6px", fontSize: "16px", fontWeight: "bold" , px: 3}}>
               LogIn
             </Button>
             </NavLink>
